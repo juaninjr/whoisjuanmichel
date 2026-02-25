@@ -1,0 +1,207 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS CUSTOM PROPERTIES ─────────────────────────────────────────────────── */
+/* Default theme (landing page / no persona) */
+:root {
+  --color-bg:      #f8f7f3;
+  --color-fg:      #1a1a18;
+  --color-accent:  #1a1a18;
+  --color-muted:   #888884;
+  --color-border:  #e2e0d8;
+  --color-surface: #f0ede5;
+}
+
+[data-persona="architect"] {
+  --color-accent: #2c4a6e;
+}
+
+[data-persona="academic"] {
+  --color-accent: #2e4a3e;
+}
+
+[data-persona="musician"] {
+  --color-accent: #8b5e3c;
+}
+
+[data-persona="artist"] {
+  --color-accent: #c45c3a;
+}
+
+[data-persona="emisito"] {
+  --color-bg:      #0a0a0f;
+  --color-fg:      #e8e6f0;
+  --color-accent:  #9b7fd4;
+  --color-muted:   #6b6880;
+  --color-border:  #1e1c2a;
+  --color-surface: #111018;
+}
+
+/* ─── BASE STYLES ──────────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+/* ─── PERSONA THEME TRANSITION ───────────────────────────────────────────────── */
+[data-persona] {
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+/* ─── TYPOGRAPHY ─────────────────────────────────────────────────────────────── */
+/* Section headings use Cormorant Garamond by default */
+.heading-display {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* emisito persona overrides heading font to Space Mono */
+[data-persona="emisito"] .heading-display {
+  font-family: var(--font-spacemono), 'Courier New', monospace;
+  text-transform: lowercase;
+  letter-spacing: -0.03em;
+}
+
+/* ─── SECTION COMPONENTS ─────────────────────────────────────────────────────── */
+.section-tag {
+  font-family: var(--font-spacemono), monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* ─── SECTION PADDING PER VARIANT ───────────────────────────────────────────── */
+.section-featured {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
+.section-standard {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.section-compact {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+/* ─── PROJECT CARDS ──────────────────────────────────────────────────────────── */
+.card-image-placeholder {
+  background: linear-gradient(135deg, var(--color-surface), var(--color-border));
+}
+
+/* ─── ART MASONRY ────────────────────────────────────────────────────────────── */
+.masonry-grid {
+  columns: 2;
+  column-gap: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+  .masonry-grid {
+    columns: 3;
+  }
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1.25rem;
+}
+
+/* ─── TIMELINE ───────────────────────────────────────────────────────────────── */
+.timeline-line {
+  position: relative;
+}
+
+.timeline-line::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: var(--color-border);
+}
+
+/* ─── SCROLLBAR ──────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+}
+
+/* ─── FOCUS STYLES ───────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ─── LINK HOVER ─────────────────────────────────────────────────────────────── */
+a {
+  transition: color 0.15s ease, opacity 0.15s ease;
+}
+
+/* ─── HORIZONTAL RULE ────────────────────────────────────────────────────────── */
+.section-rule {
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-border);
+  margin-bottom: 3rem;
+}
+
+/* ─── COMPACT SECTION STRIP ──────────────────────────────────────────────────── */
+.compact-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+
+.compact-strip-label {
+  font-family: var(--font-spacemono), monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-fg);
+}
+
+.compact-strip-sep {
+  color: var(--color-border);
+}
+
+/* ─── PERSONA SWITCHER DROPDOWN ──────────────────────────────────────────────── */
+.persona-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  min-width: 200px;
+  z-index: 50;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+[data-persona="emisito"] .persona-dropdown {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+}

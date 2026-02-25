@@ -1,0 +1,93 @@
+'use client';
+
+import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import type { PersonaSlug, SectionId } from '@/lib/personas';
+import { PERSONAS, SECTION_LABELS } from '@/lib/personas';
+import { PersonaSwitcher, LanguageToggle } from '@/components/PersonaSwitcher';
+
+interface NavigationProps {
+  mode: 'landing' | 'persona';
+  persona?: PersonaSlug;
+}
+
+export default function Navigation({ mode, persona }: NavigationProps) {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handler = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', handler, { passive: true });
+    return () => window.removeEventListener('scroll', handler);
+  }, []);
+
+  // Visible sections for persona nav (non-hidden)
+  const navSections: SectionId[] = persona
+    ? PERSONAS[persona].sections
+        .filter((s) => s.variant !== 'hidden')
+        .sort((a, b) => a.order - b.order)
+        .slice(0, 5)
+        .map((s) => s.id)
+    : [];
+
+  return (
+    <nav
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        scrolled
+          ? 'bg-theme-bg/95 backdrop-blur-sm border-b border-theme-border'
+          : 'bg-transparent'
+      }`}
+    >
+      <div className="max-w-content mx-auto px-6 md:px-10 h-14 flex items-center justify-between">
+        {/* Brand */}
+        <Link
+          href="/"
+          className="font-mono text-sm tracking-widest uppercase hover:text-theme-accent transition-colors"
+        >
+          Juan Michel
+        </Link>
+
+        {/* Center links (persona mode) */}
+        {mode === 'persona' && persona && (
+          <div className="hidden md:flex items-center gap-6">
+            {navSections.map((id) =>
+              // Architect CV → full /cv page, not scroll-to-anchor
+              persona === 'architect' && id === 'cv' ? (
+                <Link
+                  key={id}
+                  href="/cv"
+                  className="text-xs tracking-wide text-theme-muted hover:text-theme-fg transition-colors"
+                >
+                  {SECTION_LABELS[id]}
+                </Link>
+              ) : (
+                <a
+                  key={id}
+                  href={`#${id}`}
+                  className="text-xs tracking-wide text-theme-muted hover:text-theme-fg transition-colors"
+                >
+                  {SECTION_LABELS[id]}
+                </a>
+              )
+            )}
+          </div>
+        )}
+
+        {/* Right side */}
+        <div className="flex items-center gap-4">
+          <LanguageToggle />
+          {mode === 'persona' && persona && (
+            <PersonaSwitcher currentSlug={persona} />
+          )}
+          {mode === 'landing' && (
+            <Link
+              href="mailto:hello@whoisjuanmichel.com"
+              className="text-xs font-mono tracking-wide text-theme-muted hover:text-theme-fg transition-colors"
+            >
+              Contact
+            </Link>
+          )}
+        </div>
+      </div>
+    </nav>
+  );
+}
