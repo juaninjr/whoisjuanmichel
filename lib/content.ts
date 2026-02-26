@@ -80,7 +80,7 @@ export interface MusicProject {
   credits?: MusicCredit[];
 }
 
-export type PerformanceType = 'recital' | 'band' | 'show' | 'competition';
+export type PerformanceType = 'recital' | 'band' | 'session' | 'competition';
 
 export interface Performance {
   id: string;
@@ -491,7 +491,7 @@ export const musicProjects: MusicProject[] = [
 export const performances: Performance[] = [
   {
     id: 'perf1',
-    type: 'show',
+    type: 'session',
     title: 'Sala Apolo Barcelona',
     venue: '[700 capacity]',
     city: '[Barcelona]',
@@ -503,7 +503,7 @@ export const performances: Performance[] = [
   },
   {
     id: 'perf2',
-    type: 'show',
+    type: 'session',
     title: 'Bassement Club Madrid',
     venue: '[400 capacity]',
     city: '[Madrid]',
@@ -515,7 +515,7 @@ export const performances: Performance[] = [
   },
   {
     id: 'perf3',
-    type: 'show',
+    type: 'session',
     title: 'Frontman for "Fireflight" Band',
     venue: '[Jesus College, Trinity Hall College, Robinson College]',
     city: '[Cambridge]',
@@ -527,7 +527,7 @@ export const performances: Performance[] = [
   },
   {
     id: 'perf4',
-    type: 'show',
+    type: 'session',
     title: 'Frontman for "Out of Orbit" Band',
     venue: '[Jesus College, Trinity Hall College, Robinson College]',
     city: '[Cambridge]',
