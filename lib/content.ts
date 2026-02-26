@@ -246,7 +246,7 @@ export const cvEntries: CVEntry[] = [
     location: 'Madrid, Spain',
     startYear: 2009,
     endYear: 2023,
-    description: 'English/Spanish bilingual programme. BiBac Prize 2023, Academic Excellence Prize 2017 & 2019.',
+    description: 'English/Spanish bilingual programme. BiBac Prize 2023, Academic Excellence Prize 2017.',
   },
   {
     id: 'cv2',
