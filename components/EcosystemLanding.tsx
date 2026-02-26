@@ -6,7 +6,7 @@ import { useLastPersona } from '@/components/PersonaSwitcher';
 import { PERSONAS } from '@/lib/personas';
 
 const MAIN_TILES = [
-  { label: 'ARCHITECT', href: '/architect' },
+  { label: 'ARCHITECTURE', href: '/architect' },
   { label: 'MUSIC',     href: '/musician'  },
   { label: 'ART',       href: '/artist'    },
 ];

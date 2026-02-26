@@ -68,9 +68,10 @@ export interface MusicProject {
   description: string;
   genres: string[];
   isPublic: boolean;
+  coverImage?: string;
   /** true = own artistic project (emisito, personal), false = work for another artist */
   isOwn?: boolean;
-  coverImage?: string;
+
   /** Direct Spotify link */
   spotifyUrl?: string;
   /** Legacy listen link */
@@ -79,7 +80,7 @@ export interface MusicProject {
   credits?: MusicCredit[];
 }
 
-export type PerformanceType = 'recital' | 'band' | 'session' | 'competition';
+export type PerformanceType = 'recital' | 'band' | 'show' | 'competition';
 
 export interface Performance {
   id: string;
@@ -124,6 +125,7 @@ export interface EmisitoRelease {
     soundcloud?: string;
     bandcamp?: string;
   };
+  
 }
 
 // ─── PLACEHOLDER DATA ─────────────────────────────────────────────────────────
@@ -138,8 +140,8 @@ export interface EmisitoRelease {
 export const studioProjects: StudioProject[] = [
   {
     id: 's1',
-    title: 'Futuristic Clubhouse',
-    studio: 'Design Studio II',
+    title: 'Clubhouse',
+    studio: 'University Design Studio II',
     semester: 'Easter 2025',
     year: 2025,
     description: 'A wellness centre for preventative healthcare in Bottisham (Cambridgeshire)',
@@ -158,22 +160,22 @@ export const studioProjects: StudioProject[] = [
   {
     id: 's3',
     title: 'The Wing',
-    studio: 'Design Studio I',
+    studio: 'University Design Studio I',
     semester: 'Easter 2024',
     year: 2024,
     description: 'Refurbishment of abandoned bar into a theatre with a permeable reception wing in Cambridge.',
     tags: ['Infrastructure', 'Light'],
     coverImage: '/images/studio/thewingsnap.png',
-    pdfUrl: '/docs/Year1_Q3_TheWing.pdf',
-    images: ['/images/studio/wing/WING12.png','/images/studio/wing/WING8.png','/images/studio/wing/WING9.png',
-      '/images/studio/wing/WING11.png','/images/studio/wing/WING7.png','/images/studio/wing/WING13.png','/images/studio/wing/WING10.png',
-      '/images/studio/wing/WING5.png','/images/studio/wing/WING14.png'],
+    pdfUrl: '/docs/TheWing.pdf',
+    images: ['/images/studio/wing/WING12.png','/images/studio/wing/WING8.png','/images/studio/wing/Wing9.png',
+      '/images/studio/wing/Wing11.png','/images/studio/wing/Wing7.png','/images/studio/wing/Wing13.png','/images/studio/wing/Wing10.png',
+      '/images/studio/wing/Wing5.png','/images/studio/wing/Wing14.png'],
     // images: ['/images/studio/TheWing_plans.jpg'],          ← add extra pages here
   },
    {
     id: 's_playtroll',
     title: 'Playtroll Station',
-    studio: 'Design Studio II',
+    studio: 'University Design Studio II',
     semester: 'Michaelmas 2024',
     year: 2024,
     description: 'A playful public playground and café to encourage social interaction of all ages in a natural and contemporary ergonomic form.',
@@ -193,6 +195,7 @@ export const studioProjects: StudioProject[] = [
     tags: ['Cultural', 'Urban', 'Public Space'],
     coverImage: '/images/studio/fig_image_12_64.png',
     pdfUrl: '/docs/TheCarpProject.pdf',
+    videoUrl: '/videos/carp1.mp4',
    
     // images: ['/images/studio/TheCarp_section.jpg'],        ← add extra pages here
   },
@@ -200,7 +203,7 @@ export const studioProjects: StudioProject[] = [
   {
     id: 's4',
     title: 'Landquiitecture',
-    studio: 'Design Studio I',
+    studio: 'University Design Studio I',
     semester: 'Spring 2024',
     year: 2024,
     description: 'Market area insertion next to Cambridge F.C. stadium. Movable ledges for blending experience between market and stadium. Reuse of materials from the stadium.',
@@ -258,7 +261,7 @@ export const cvEntries: CVEntry[] = [
   {
     id: 'cv3',
     type: 'experience',
-    title: 'Sound & Production Engineer',
+    title: 'Sound & Production Engineer (Freelance)',
     institution: 'FIVE Media Clan',
     location: 'Remote, Andorra',
     startYear: 2022,
@@ -302,30 +305,76 @@ export const courses: Course[] = [
     id: 'c1',
     title: 'Rhino + Grasshopper',
     provider: 'Self-directed',
+    year: 2024,
+    category: 'Software',
+    
+  },
+  {
+    id: 'c3',
+    title: 'Adobe Photoshop',
+    provider: 'Self-directed',
+    year: 2022,
+    category: 'Software',
+  },
+  {
+    id: 'c8',
+    title: 'Adobe After Effects',
+    provider: 'Self-directed',
+    year: 2025,
+    category: 'Software',
+  },
+  {
+    id: 'c9',
+    title: 'Adobe Premiere Pro',
+    provider: 'Self-directed',
+    year: 2024,
+    category: 'Software',
+  },
+  {
+    id: 'c10',
+    title: 'Unreal Engine',
+    provider: 'Self-directed',
+    year: 2024,
+    category: 'Software',
+  },
+  {
+    id: 'c6',
+    title: 'AutoCAD',
+    provider: 'Self-directed',
     year: 2023,
+    category: 'Software',
+    
+  },
+  {
+    id: 'c7',
+    title: 'Pro Tools DAW',
+    provider: 'Self-directed',
+    year: 2020,
+    category: 'Software',
+  },
+  {
+    id: 'c11',
+    title: 'Ableton Live DAW',
+    provider: 'Self-directed',
+    year: 2020,
     category: 'Software',
   },
   {
     id: 'c2',
     title: 'CS50x: Introduction to Computer Science',
     provider: 'Harvard University (Online)',
-    year: 2023,
+    year: 2025,
     category: 'Computer Science',
     certificateUrl: '#',
   },
-  {
-    id: 'c3',
-    title: 'Adobe Creative Suite',
-    provider: 'Self-directed',
-    year: 2022,
-    category: 'Software',
-  },
+  
   {
     id: 'c4',
     title: 'RIBA Skill Up Project',
     provider: 'Royal Institute of British Architects',
     year: 2022,
     category: 'Architecture',
+    certificateUrl: '#',
   },
   {
     id: 'c5',
@@ -338,109 +387,155 @@ export const courses: Course[] = [
 ];
 
 export const musicProjects: MusicProject[] = [
-  {
-    id: 'm1',
-    artistName: '[Artist / Project Name]',
-    title: 'Score for Short Film',
-    year: 2024,
-    role: 'Composer',
-    description: 'Original orchestral score for a 12-minute documentary short.',
-    genres: ['Orchestral', 'Documentary'],
-    isPublic: true,
-    isOwn: false,
-    credits: ['Written', 'Produced', 'Mixed', 'Mastered'],
-    spotifyUrl: '#',
-  },
-  {
-    id: 'm2',
-    artistName: '[Brand / Agency]',
-    title: 'Brand Identity Soundscape',
-    year: 2023,
-    role: 'Composer & Producer',
-    description: 'Sonic identity system for a lifestyle brand — main theme, stingers, ambient tracks.',
-    genres: ['Electronic', 'Ambient', 'Commercial'],
-    isPublic: true,
-    isOwn: false,
-    credits: ['Written', 'Produced', 'Mixed', 'Mastered'],
-    spotifyUrl: '#',
-  },
+ 
   {
     id: 'm3',
     artistName: 'emisito',
-    title: '[Own Track Title]',
-    year: 2024,
+    title: 'Lo Único Que Me Queda',
+    year: 2025,
     role: 'Artist',
-    description: 'Personal release under the emisito name.',
-    genres: ['Electronic', 'Ambient'],
+    description: 'Debut Album',
+    genres: ['Pop', 'Latin Urban'],
     isPublic: true,
     isOwn: true,
     credits: ['Written', 'Produced', 'Mixed', 'Mastered'],
-    spotifyUrl: '#',
+    coverImage: '/images/music/LUQMQ_cover.png',
+    spotifyUrl: 'https://open.spotify.com/album/5EFbTkLk11AHvBUibtpNsh?si=UcEzA825ShyyoIZpNBWLsw'
   },
   {
     id: 'm4',
-    artistName: 'Private',
-    title: 'Private Client Project',
-    year: 2024,
-    role: 'Producer',
+    artistName: 'emisito & Magus',
+    title: 'SiGLo DeL KueRo',
+    year: 2025,
+    role: 'Artist',
     description: 'Confidential commercial project.',
-    genres: ['Commercial'],
-    isPublic: false,
+    genres: ['Trap', 'Latin Urban'],
+    isPublic: true,
+    isOwn: true,
+    credits: ['Written', 'Produced', 'Mixed', 'Mastered'],
+    coverImage: '/images/music/siglo.png',
+    spotifyUrl: 'https://open.spotify.com/album/3do1jbURfvD6ctF5c7W53R?si=64mEO-o8SIqT53OnCJnNTg',
+  },
+  {
+    id: 'm5',
+    artistName: 'Hemix',
+    title: 'Afterfever',
+    year: 2025,
+    role: 'Artist',
+    description: 'Post-Mayball ramblings',
+    genres: ['Pop/Rock', 'Alternative'],
+    isPublic: true,
+    isOwn: true,
+    credits: ['Written', 'Produced', 'Mixed', 'Mastered'],
+    coverImage: '/images/music/afterfever.png',
+    spotifyUrl: 'https://open.spotify.com/album/40IqVJ4RDnU8FVUB3bFVCM?si=tEaFM7woR0ap-vALyyFSxA',
+  },
+  {
+    id: 'm5',
+    artistName: 'Hemix',
+    title: 'Dont Expect To Understand',
+    year: 2023,
+    role: 'Artist',
+    description: 'First ever album recorded',
+    genres: ['Pop/Rock', 'Alternative'],
+    isPublic: true,
+    isOwn: true,
+    credits: ['Written', 'Produced', 'Mixed', 'Mastered'],
+    coverImage: '/images/music/dontexpect.png',
+    spotifyUrl: 'https://open.spotify.com/album/1PFl92wc6rXHNWzZpEwpMA?si=_1Jvh2sBQoeKAPuCf7Er4g',
+  },
+  {
+    id: 'm6',
+    artistName: 'rickyedit',
+    title: 'el otro era yo',
+    year: 2024,
+    role: 'Mix Engineer',
+    description: 'Creative Mixing and mastering for a track with 5M+ streams',
+    genres: ['Pop', 'Urban Latin'],
+    isPublic: true,
     isOwn: false,
     credits: ['Mixed', 'Mastered'],
+    coverImage: '/images/music/elotroerayo.png',
+    spotifyUrl: 'https://open.spotify.com/track/6dnNmjz2asE1LsKDDuMul9?si=0a6286ec40684efd',
+  },
+  {
+    id: 'm5',
+    artistName: 'rickyedit',
+    title: 'eras to esto',
+    year: 2023,
+    role: 'Mix Engineer',
+    description: '3 track EP, sound design and creative mixing and mastering. Total of 10M+ streams.',
+    genres: ['Pop', 'Alternative'],
+    isPublic: true,
+    isOwn: false,
+    credits: ['Mixed', 'Mastered'],
+    coverImage: '/images/music/erastoesto.png',
+    spotifyUrl: 'https://open.spotify.com/album/2XIP24nmbvyjQi9mvtUVXn?si=ifWozLBsRfePZyNcdfIz7A',
+  },
+  {
+    id: 'm7',
+    artistName: 'rickyedit & Magus',
+    title: 'rango superior',
+    year: 2023,
+    role: 'Mix Engineer',
+    description: 'Collaboration track Magus and rickyedit, 6M+ streams',
+    genres: ['Trap', 'Pop'],
+    isPublic: true,
+    isOwn: false,
+    credits: ['Mixed', 'Mastered'],
+    coverImage: '/images/music/rango.png',
+    spotifyUrl: 'https://open.spotify.com/album/5y4Gqk4dreHqaQw9aPVZpr?si=AugaDYxBTxeIniXyhE2Lkw',
   },
 ];
 
 export const performances: Performance[] = [
   {
     id: 'perf1',
-    type: 'recital',
-    title: 'Year-End Piano Recital',
-    venue: '[Concert Hall / Venue]',
-    city: '[City]',
-    date: '2024-05-15',
-    role: 'Pianist',
+    type: 'show',
+    title: 'Sala Apolo Barcelona',
+    venue: '[700 capacity]',
+    city: '[Barcelona]',
+    date: '2024-07-06',
+    role: 'Support Act & Show Sound Engineer',
     isFeatured: true,
-    // photo: '/images/live/recital-2024.jpg',  ← add your event photo here
-    program: [
-      'Bach — Partita No. 2 in C minor, BWV 826',
-      'Chopin — Ballade No. 1 in G minor, Op. 23',
-    ],
+    photo: '/images/music/apolo1.png',
+    program: [],
   },
   {
     id: 'perf2',
-    type: 'band',
-    title: '[Band Name] — Live at [Venue]',
-    venue: '[Venue]',
-    city: '[City]',
-    date: '2024-03-08',
-    role: 'Keys / Guitar',
-    ensemble: '[Band Name]',
+    type: 'show',
+    title: 'Bassement Club Madrid',
+    venue: '[400 capacity]',
+    city: '[Madrid]',
+    date: '2024-03-22',
+    role: 'Support Act & Show Sound Engineer',
     isFeatured: true,
-    // photo: '/images/live/band-2024.jpg',  ← add your event photo here
+    photo: '/images/music/bassement.png',
+    program: [],
   },
   {
     id: 'perf3',
-    type: 'recital',
-    title: 'Chamber Music Evening',
-    venue: '[Venue]',
-    city: '[City]',
-    date: '2023-11-20',
-    role: 'Pianist',
-    program: [
-      'Brahms — Violin Sonata No. 1 in G major, Op. 78',
-    ],
+    type: 'show',
+    title: 'Frontman for "Fireflight" Band',
+    venue: '[Jesus College, Trinity Hall College, Robinson College]',
+    city: '[Cambridge]',
+    date: '2026-02-20',
+    role: 'Front Man for Fireflight Band',
+    isFeatured: false,
+    photo: '/images/music/fireflight.png',
+    program: ['Selected covers'],
   },
   {
     id: 'perf4',
-    type: 'band',
-    title: '[University Jazz Ensemble]',
-    venue: '[Venue]',
-    city: '[City]',
-    date: '2023-12-01',
-    role: 'Piano',
-    ensemble: 'University Jazz Ensemble',
-    program: ['Misty', 'Autumn Leaves', 'So What'],
+    type: 'show',
+    title: 'Frontman for "Out of Orbit" Band',
+    venue: '[Jesus College, Trinity Hall College, Robinson College]',
+    city: '[Cambridge]',
+    date: '2026-02-20',
+    role: 'Front Man for Fireflight Band',
+    isFeatured: false,
+    photo: '/images/music/ooo.png',
+    program: ['Original songs by Out of Orbit Band', 'Selected covers'],
   },
 ];
 
